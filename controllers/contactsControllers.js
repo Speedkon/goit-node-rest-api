@@ -1,5 +1,6 @@
 const contactsService = require("../services/contactsServices.js");
 const HttpError = require("../helpers/HttpError.js")
+const controllerWrapper = require('../helpers/controllerWrapper')
 
 const getAllContacts = async(req, res) => {
     const result = await contactsService.listContacts();
@@ -40,9 +41,9 @@ const updateContact = async (req, res) => {
 };
 
 module.exports = {
-    getAllContacts,
-    getOneContact,
-    deleteContact,
-    createContact,
-    updateContact
+    getAllContacts: controllerWrapper(getAllContacts),
+    getOneContact: controllerWrapper(getOneContact),
+    deleteContact: controllerWrapper(deleteContact),
+    createContact: controllerWrapper(createContact),
+    updateContact: controllerWrapper(updateContact)
 };
