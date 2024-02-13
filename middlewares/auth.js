@@ -7,7 +7,7 @@ const controllerWrapper = require('../helpers/controllerWrapper');
 
 const authMiddleware = async (req, res, next) => {
     const authHeader = req.headers.authorization || ''
-    const { type, token } = authHeader.split(' ')
+    const [type, token ] = authHeader.split(' ')
     
     if (type !== "Bearer") {
         throw HttpError(401, "Not authorized")

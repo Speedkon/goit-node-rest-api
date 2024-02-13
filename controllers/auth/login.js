@@ -10,7 +10,7 @@ const login = async (req, res, next) => {
     const { email, password } = req.body
     
     const user = await User.findOne({ email })
-    
+    const { _id: id } = user;
     if (!user) {
         throw HttpError(401, 'Email or password is wrong')
     }
