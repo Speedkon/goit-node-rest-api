@@ -1,6 +1,6 @@
 const express = require('express')
 const validateBody = require('../helpers/validateBody.js')
-const contactController = require('../controllers/contactsControllers.js');
+const contactController = require('../controllers/contacts');
 const {createContactSchema, updateContactSchema, updateFavoriteSchema} = require('../schemas/contactsSchemas.js')
 
 const contactsRouter = express.Router();
