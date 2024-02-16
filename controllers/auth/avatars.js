@@ -6,6 +6,7 @@ const Jimp = require("jimp");
 
 const updateAvatar = async (req, res, next) => {
     const { filename } = req.file;
+    const { _id } = req.user;
     const tmpPath = path.resolve("tmp", filename)
     const publicPath = path.resolve("public", "avatars", filename);
 
@@ -18,9 +19,8 @@ const updateAvatar = async (req, res, next) => {
     try {
         await fs.rename(tmpPath, publicPath)
 
-        const userId = req.params.id;
         const img = path.join('public', 'avatars', filename);
-        const user = await User.findByIdAndUpdate(userId, {avatarURL: img}, {new: true})
+        const user = await User.findByIdAndUpdate(_id, {avatarURL: img}, {new: true})
 
         return res.status(200).json({avatarURL: user.avatarURL})
     } catch (error) {
