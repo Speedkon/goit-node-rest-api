@@ -10,5 +10,7 @@ router.post('/login', controller.login);
 router.post('/logout', authMiddleware, controller.logout);
 router.get('/current', authMiddleware, controller.current);
 router.patch('/avatars', authMiddleware, update.single('avatarURL'), controller.updateAvatar);
+router.get("/verify/:verificationToken", controller.verification);
+router.post("/verify", controller.resendVerification);
 
 module.exports = router;
